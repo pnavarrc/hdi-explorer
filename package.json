@@ -1,0 +1,27 @@
+{
+  "name": "hdi-explorer",
+  "version": "0.1.0",
+  "description": "Human Development Index Explorer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/pnavarrc/hdi-explorer.git"
+  },
+  "keywords": [
+    "d3",
+    "hdi"
+  ],
+  "author": "Pablo Navarro Castillo <pnavarrc@gmail.com>",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/pnavarrc/hdi-explorer/issues"
+  },
+  "devDependencies": {
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-jshint": "~0.8.0"
+  }
+}
