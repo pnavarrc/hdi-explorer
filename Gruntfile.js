@@ -39,6 +39,14 @@ module.exports = function(grunt) {
                 src: 'bower_components/jquery/jquery.min.js',
                 dest: 'js/lib/jquery.min.js'
             },
+            backbone: {
+                src: 'bower_components/backbone/backbone-min.js',
+                dest: 'js/lib/backbone-min.js'
+            },
+            underscore: {
+                src: 'bower_components/underscore/underscore-min.js',
+                dest: 'js/lib/underscore-min.js'
+            },
             d3: {
                 src: 'bower_components/d3/d3.min.js',
                 dest: 'js/lib/d3.min.js'
