@@ -22,12 +22,30 @@ module.exports = function(grunt) {
                     {
                         cwd: 'bower_components/bootstrap/dist/css/',
                         src: '*.min.css',
-                        dest: 'css/lib/',
+                        dest: 'css/',
                         filter: 'isFile',
                         expand: true
                     },
                     {
                         cwd: 'bower_components/bootstrap/dist/fonts',
+                        src: '**',
+                        dest: 'fonts/',
+                        filter: 'isFile',
+                        expand: true
+                    }
+                ]
+            },
+            fontawesome: {
+                files: [
+                    {
+                        cwd: 'bower_components/font-awesome/css/',
+                        src: '*.min.css',
+                        dest: 'css/',
+                        filter: 'isFile',
+                        expand: true
+                    },
+                    {
+                        cwd: 'bower_components/font-awesome/fonts',
                         src: '**',
                         dest: 'fonts/',
                         filter: 'isFile',
@@ -53,7 +71,7 @@ module.exports = function(grunt) {
             }
         },
 
-        clean: ['js/lib/*', 'css/lib/*', 'fonts/*']
+        clean: ['js/lib/*', 'fonts/*']
     });
 
     // Enable the grunt plugins

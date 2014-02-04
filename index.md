@@ -3,6 +3,67 @@ layout: main
 title: HDI Explorer
 ---
 
+<!-- Templates -->
+
+<!-- Country Summary Template -->
+<script type="text/template" id="country-summary-template">
+
+    <div class="row country-summary-title">
+        <div class="col-xs-8"><%= name %></div>
+        <div class="col-xs-4 text-right">#<%= hdi_rank %></div>
+    </div>
+
+    <div class="row country-summary-box">
+        <div class="col-xs-12 country-summary-box-header">
+            <i class="fa fa-bar-chart-o fa-fw"></i> human development index
+        </div>
+        <div class="col-xs-12">
+            <div class="col-xs-9">human development index</div>
+            <div class="col-xs-3 text-right"><%= hdi_value %></div>
+        </div>
+        <div class="col-xs-12">
+            <div class="col-xs-9">hdi rank</div>
+            <div class="col-xs-3 text-right"><%= hdi_rank %></div>
+        </div>
+    </div>
+
+
+    <div class="row country-summary-box">
+        <div class="col-xs-12 country-summary-box-header">
+            <i class="fa fa-heart fa-fw"></i> life and health
+        </div>
+        <div class="col-xs-12">
+            <div class="col-xs-9">life expectancy at birth</div>
+            <div class="col-xs-3 text-right"><%= life_expectancy_at_birth %></div>
+        </div>
+    </div>
+
+    <div class="row country-summary-box">
+        <div class="col-xs-12 country-summary-box-header">
+            <i class="fa fa-book fa-fw"></i> education
+        </div>
+        <div class="col-xs-12">
+            <div class="col-xs-9">mean years of schooling</div>
+            <div class="col-xs-3 text-right"><%= mean_years_of_schooling %></div>
+        </div>
+        <div class="col-xs-12">
+            <div class="col-xs-9">expected years of schooling</div>
+            <div class="col-xs-3 text-right"><%= expected_years_of_schooling %></div>
+        </div>
+    </div>
+
+    <div class="row country-summary-box">
+        <div class="col-xs-12  country-summary-box-header">
+            <i class="fa fa-money fa-fw"></i> income
+        </div>
+        <div class="col-xs-12">
+            <div class="col-xs-9">gni per capita</div>
+            <div class="col-xs-3 text-right">$<%= gross_national_income_gni_per_capita %></div>
+        </div>
+    </div>
+
+</script>
+
 
 
 <div class="container-fluid">
@@ -23,8 +84,3 @@ title: HDI Explorer
 <script src="{{ site.baseurl }}/js/app/views/country.js"></script>
 <script src="{{ site.baseurl }}/js/app/views/countries.js"></script>
 <script src="{{ site.baseurl }}/js/app/setup.js"></script>
-
-<script>
-
-
-</script>

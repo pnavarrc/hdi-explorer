@@ -12,27 +12,35 @@ app.countries.listenTo(app.state, 'change:code', function(changed) {
 
     var code = changed.get('code');
 
-    console.log('app.state ' + code);
-
     // Unselect previously selected items
     var selected = this.findWhere({selected: true});
-
-    if (selected) {
-        console.log('previously selected item: ' + selected.get('code'));
-        selected.set('selected', false);
-    }
+    if (selected) { selected.set('selected', false); }
 
     // Change the selected item
     selected = this.get(code);
-    console.log('new selected item: ' + selected.get('code'));
     selected.set('selected', true);
 });
 
 
 app.country = new app.CountrySummary();
 
+app.country.listenTo(app.state, 'change:code', function(state) {
+    this.setCode(state.get('code'));
+});
+
+app.country.listenTo(app.country, 'reset', function() {
+    console.log('FETCH SUMMARY');
+    console.log(this.toJSON());
+});
+
 
 var lview = new app.CountriesTrendView({
     el: $('div#chart'),
     collection: app.countries
+});
+
+
+app.countrySummaryView = new app.CountrySummaryView({
+    el: 'div#table',
+    model: app.country
 });

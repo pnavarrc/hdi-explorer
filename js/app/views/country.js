@@ -1,13 +1,16 @@
-/* globals Backbone, app */
+/* globals Backbone, app, _, $ */
 
 app.CountrySummaryView = Backbone.View.extend({
+    // View template
+    template: _.template($('#country-summary-template').html()),
 
     initialize: function() {
-        this.listenTo(this.model, 'change:code', this.render);
+        // Update the view on name changes
+        this.listenTo(this.model, 'change:name', this.render);
     },
 
     render: function() {
-        console.log(this.model.get('code'));
+        // Render the template
+        this.$el.html(this.template(this.model.toJSON()));
     }
-
 });

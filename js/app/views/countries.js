@@ -2,14 +2,14 @@
 
 app.CountriesTrendView = Backbone.View.extend({
 
+    // Initialize the trend chart
     chart: hdi.chart.trend()
         .series(function(d) { return d.hdiSeries; })
         .x(function(d) { return d.year; })
         .y(function(d) { return d.hdi; }),
 
-    events: {
-
-    },
+    // View DOM Events
+    events: {},
 
     // Initialization and render
     initialize: function() {
@@ -18,23 +18,9 @@ app.CountriesTrendView = Backbone.View.extend({
     },
 
     render: function() {
-
-        console.log('view::contries::render ' + app.state.get('code'));
-
-        // Confirm that the collection has a selected item
-        var selected = this.collection.findWhere({selected: true});
-
-        if (selected) {
-            console.log('view::countries::render ');
-            console.log(selected.toJSON());
-        } else {
-            console.log('view::countries::render (no selected)');
-        }
-
-        console.log('view::countries::render (updating the chart)');
+        // Rebind and render the chart
         d3.select(this.el)
             .data([this.collection.toJSON()])
             .call(this.chart);
     }
-
 });

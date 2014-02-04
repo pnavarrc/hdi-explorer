@@ -22,20 +22,19 @@
 }
 
 .trend-path {
-    stroke: #555;
+    stroke: #aaa;
     stroke-width: 1.5;
     fill: none;
 }
 
 .trend-phantom {
     fill: none;
-    stroke-opacity: 0.1;
-    stroke-width: 1.5;
+    stroke-opacity: 0;
+    stroke-width: 3;
 }
 
 .trend-highlight {
     fill: none;
-    stroke-width: 3;
     stroke-opacity: 1.0;
-    stroke: yellow;
+    stroke: #4ECDC4;
 }
