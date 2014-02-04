@@ -65,3 +65,69 @@
 }
 
 
+
+
+/* Axis */
+.axis path, line {
+    fill: none;
+    stroke: #333;
+    shape-rendering: crispEdges;
+}
+/* Style for the xaxis */
+.xaxis {
+  font-size: 11px;
+  font-family: sans-serif;
+  color: #333;
+}
+/* Style for the yaxis */
+.yaxis {
+  font-size: 11px;
+  font-family: sans-serif;
+}
+
+/* Chart */
+.chart-background {
+    fill: #ddd;
+}
+
+.trend-path {
+    stroke: #aaa;
+    stroke-width: 1.5;
+    fill: none;
+}
+
+.trend-phantom {
+    fill: none;
+    stroke-opacity: 0;
+    stroke-width: 3;
+}
+
+.trend-highlight {
+    fill: none;
+    stroke-opacity: 1.0;
+    stroke: #41aba3;
+}
+
+.country-summary {
+    margin-top: 20px;
+}
+
+.country-summary-title {
+    color: #00A0B0;
+    font-size: 28pt;
+}
+
+.country-summary-box {
+    color: #00A0B0;
+    margin-top: 10px;
+    font-size: 11pt;
+    font-variant: small-caps;
+}
+
+.country-summary-box-header {
+    border-bottom: solid 4px #00A0B0;
+    color: #00A0B0;
+    font-size: 14px;
+    font-weight: bold;
+    font-variant: small-caps;
+}
