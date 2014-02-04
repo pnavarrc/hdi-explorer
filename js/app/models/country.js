@@ -13,9 +13,9 @@ app.CountrySummary = Backbone.Model.extend({
         name: ''
     },
 
-    setCode: function(code) {
+    setState: function(state) {
         // Construct the URL and fetch the data
-        this.url = this.urltpl({baseurl: this.baseurl, code: code});
+        this.url = this.urltpl({baseurl: this.baseurl, code: state.get('code')});
         this.fetch({reset: true});
     },
 
@@ -34,12 +34,8 @@ app.CountrySummary = Backbone.Model.extend({
                 // Extract the attribute name after the year
                 var p = attr.slice(6);
                 data[p] = item[attr];
-
-                console.log(p + ' ' + item[attr]);
             }
         }
-
-        console.log(data);
 
         // Construct the data object
         return data;

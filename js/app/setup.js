@@ -2,45 +2,56 @@
 
 
 // Models & Collections
+// --------------------
 
+// Application
 app.state = new app.ApplicationModel();
 
+// HDI Country Trends
 app.countries = new app.Countries();
+
+
+app.countries.listenTo(app.state, 'change:code', function(state) {
+    this.setSelected(state.get('code'));
+});
+
+app.countries.on({
+
+    'reset': function() {
+        app.state.set('code', this.first().get('code'));
+    },
+
+    'change:selected': function() {
+        var selected = this.findWhere({selected: true});
+        if (selected) {
+            app.state.set('code', selected.get('code'));
+        }
+    }
+
+});
+
 app.countries.fetch({reset: true});
 
-app.countries.listenTo(app.state, 'change:code', function(changed) {
-
-    var code = changed.get('code');
-
-    // Unselect previously selected items
-    var selected = this.findWhere({selected: true});
-    if (selected) { selected.set('selected', false); }
-
-    // Change the selected item
-    selected = this.get(code);
-    selected.set('selected', true);
-});
-
-
+// HDI Summary
 app.country = new app.CountrySummary();
-
-app.country.listenTo(app.state, 'change:code', function(state) {
-    this.setCode(state.get('code'));
-});
-
-app.country.listenTo(app.country, 'reset', function() {
-    console.log('FETCH SUMMARY');
-    console.log(this.toJSON());
-});
+app.country.listenTo(app.state, 'change:code', app.country.setState);
 
 
-var lview = new app.CountriesTrendView({
+// Views
+// -----
+
+app.trendView = new app.CountriesTrendView({
     el: $('div#chart'),
     collection: app.countries
 });
 
+app.searchView = new app.CountriesSearchView({
+    el: $('#search-country'),
+    collection: app.countries,
+    model: app.state
+});
 
-app.countrySummaryView = new app.CountrySummaryView({
-    el: 'div#table',
+app.summaryView = new app.CountrySummaryView({
+    el: $('div#table'),
     model: app.country
 });

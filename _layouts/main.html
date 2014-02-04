@@ -13,41 +13,16 @@
     <!-- Styles -->
     <link href="{{ site.baseurl }}/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ site.baseurl }}/css/font-awesome.min.css" rel="stylesheet">
-    <link href="{{ site.baseurl }}/css/main.css" rel="stylesheet">
-    <link href="{{ site.baseurl }}/css/charts.css" rel="stylesheet">
-    <link href="{{ site.baseurl }}/css/summary.css" rel="stylesheet">
+    <link href="{{ site.baseurl }}/hdi.css" rel="stylesheet">
   </head>
 
   <body>
-    <script src="{{ site.baseurl }}/js/lib/jquery.min.js"></script>
-    <script src="{{ site.baseurl }}/js/lib/bootstrap.min.js"></script>
-    <script src="{{ site.baseurl }}/js/lib/underscore-min.js"></script>
-    <script src="{{ site.baseurl }}/js/lib/backbone-min.js"></script>
-    <script src="{{ site.baseurl }}/js/lib/d3.min.js"></script>
+    <!-- Navigation Bar -->
+    {% include navbar.html %}
 
-    <div class="navbar navbar navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">{{ site.name }}</a>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="#about">About</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
-
+    <!-- Content -->
     <div class="container">
-
-    {{ content }}
-
+      {{ content }}
     </div>
 
   </body>

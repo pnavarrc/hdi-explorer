@@ -10,7 +10,7 @@ hdi.chart.trend = function() {
     var attributes = {
         width: 600,
         height: 400,
-        margin: {top: 0, right: 20, bottom: 20, left: 40},
+        margin: {top: 20, right: 20, bottom: 20, left: 40},
         series: function(d) { return d.series; },
         x: function(d) { return d.x; },
         y: function(d) { return d.y; }
@@ -48,7 +48,7 @@ hdi.chart.trend = function() {
 
             // Vertical Scale
             var yScale = d3.scale.linear()
-                .domain(d3.extent(items, function(d) { return attributes.y(d); }))
+                .domain([0, 1])
                 .range([height, 0]);
 
             // Create the line generator
@@ -117,14 +117,6 @@ hdi.chart.trend = function() {
             .attr('width', width)
             .attr('height', height);
 
-        // X Axis
-        svg.append('g').attr('class', 'axis xaxis')
-            .attr('transform', 'translate(' + [margin.left, margin.top + height] + ')');
-
-        // Y Axis
-        svg.append('g').attr('class', 'axis yaxis')
-            .attr('transform', 'translate(' + [margin.left, margin.top] + ')');
-
         // Chart Groups
 
         // Main Lines
@@ -133,6 +125,14 @@ hdi.chart.trend = function() {
 
         // Phantom group
         svg.append('g').attr('class', 'chart-phantom')
+            .attr('transform', 'translate(' + [margin.left, margin.top] + ')');
+
+        // X Axis
+        svg.append('g').attr('class', 'axis xaxis')
+            .attr('transform', 'translate(' + [margin.left, margin.top + height] + ')');
+
+        // Y Axis
+        svg.append('g').attr('class', 'axis yaxis')
             .attr('transform', 'translate(' + [margin.left, margin.top] + ')');
 
     };
