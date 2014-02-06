@@ -33,7 +33,7 @@ app.countries.on({
 app.countries.fetch({reset: true});
 
 // HDI Summary
-app.country = new app.CountrySummary();
+app.country = new app.CountryInformation();
 app.country.listenTo(app.state, 'change:code', app.country.setState);
 
 
@@ -47,11 +47,10 @@ app.trendView = new app.CountriesTrendView({
 
 app.searchView = new app.CountriesSearchView({
     el: $('#search-country'),
-    collection: app.countries,
-    model: app.state
+    collection: app.countries
 });
 
-app.summaryView = new app.CountrySummaryView({
+app.infoView = new app.CountryInformationView({
     el: $('div#table'),
     model: app.country
 });

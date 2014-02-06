@@ -1,9 +1,8 @@
-
 # Jekyll Configuration
 safe: true
 markdown: rdiscount
 permalink: pretty
-lsi: false
+exclude: ['bower_components', 'node_modules']
 
 # Site
 name: Human Development Index Explorer
