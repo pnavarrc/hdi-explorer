@@ -1,6 +1,6 @@
 /* globals Backbone, app, _, $ */
 
-app.CountrySummaryView = Backbone.View.extend({
+app.CountryInformationView = Backbone.View.extend({
     // View template
     template: _.template($('#country-summary-template').html()),
 

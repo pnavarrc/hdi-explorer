@@ -3,9 +3,7 @@ layout: main
 title: HDI Explorer
 ---
 
-<!-- Templates -->
-
-<!-- Country Summary Template -->
+<!-- Country Information Template -->
 <script type="text/template" id="country-summary-template">
 
     <div class="row country-summary-title">
