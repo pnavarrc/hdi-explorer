@@ -294,6 +294,7 @@ app.Countries = Backbone.Collection.extend({
 });
 /* globals Backbone, app, _, $ */
 
+// Country Information View
 app.CountryInformationView = Backbone.View.extend({
     // View template
     template: _.template($('#country-summary-template').html()),
@@ -430,10 +431,9 @@ app.trendView = new app.CountriesTrendView({
 app.searchView = new app.CountriesSearchView({
     el: $('#search-country'),
     collection: app.countries
-    // model: app.state
 });
 
-app.summaryView = new app.CountryInformationView({
+app.infoView = new app.CountryInformationView({
     el: $('div#table'),
     model: app.country
 });

@@ -48,10 +48,9 @@ app.trendView = new app.CountriesTrendView({
 app.searchView = new app.CountriesSearchView({
     el: $('#search-country'),
     collection: app.countries
-    // model: app.state
 });
 
-app.summaryView = new app.CountryInformationView({
+app.infoView = new app.CountryInformationView({
     el: $('div#table'),
     model: app.country
 });
