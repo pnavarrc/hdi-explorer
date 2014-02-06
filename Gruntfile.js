@@ -151,7 +151,7 @@ module.exports = function(grunt) {
     // Register Tasks
 
     // Test Task
-    grunt.registerTask('build', ['jshint', 'copy', 'uglify', 'clean']);
+    grunt.registerTask('build', ['jshint', 'copy', 'concat', 'uglify', 'clean']);
     grunt.registerTask('dist', ['build']);
     grunt.registerTask('default', ['build']);
 

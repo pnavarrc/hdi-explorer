@@ -158,57 +158,66 @@ hdi.chart.trend = function() {
 var app = {};
 /* globals Backbone, app */
 
+// Application Model
 app.ApplicationModel = Backbone.Model.extend({
-
+    // Code of the Selected Country
     defaults: {
         code: ''
     }
-
 });
 /* globals Backbone, app, _ */
 
-app.CountrySummary = Backbone.Model.extend({
 
+// Country Information Model
+app.CountryInformation = Backbone.Model.extend({
+
+    // URL to fetch the model data
     url: '',
 
+    // Base URL
     baseurl: 'http://data.undp.org/resource/wxub-qc5k.json',
 
+    // Template to construct the URL
     urltpl: _.template('<%= baseurl %>?Abbreviation=<%= code %>'),
 
+    // Default attributes, the name and code of the country
     default: {
         code: '',
         name: ''
     },
 
+    // Compile the URL and fetch the data
     setState: function(state) {
         // Construct the URL and fetch the data
         this.url = this.urltpl({baseurl: this.baseurl, code: state.get('code')});
         this.fetch({reset: true});
     },
 
+    // Parse the response and set the model contents
     parse: function(response) {
+
         // Get the first item of the response
-        var item = response.pop();
+        var item = response.pop(),
+            data = {
+                code: item.abbreviation,
+                name: item.name
+            };
 
-        var data = {
-            code: item.abbreviation,
-            name: item.name
-        };
-
-        // Parse the rank
+        // Parse each attribute, removing the year part of the attribute.
         for (var attr in item) {
             if (attr[0] === '_') {
                 // Extract the attribute name after the year
-                var p = attr.slice(6);
-                data[p] = item[attr];
+                data[attr.slice(6)] = item[attr];
             }
         }
 
-        // Construct the data object
+        // Return the parsed data
         return data;
     }
 });
 
+
+// Country Trend Model
 app.CountryTrend = Backbone.Model.extend({
 
     // Default values for the Country Trend Model
@@ -252,14 +261,21 @@ app.CountryTrend = Backbone.Model.extend({
 
 /* globals Backbone, app */
 
+// Countries Collection
 app.Countries = Backbone.Collection.extend({
+
+    // Model
     model: app.CountryTrend,
+
+    // JSON Endpoint URL
     url: 'http://data.undp.org/resource/efc4-gjvq.json',
 
+    // Remove non-country items
     parse: function(response) {
         return response.filter(function(d) { return d.country_code; });
     },
 
+    // Set the selected country, ensuring that only one is selected
     setSelected: function(code) {
 
         var selected = this.findWhere({selected: true});
@@ -278,7 +294,8 @@ app.Countries = Backbone.Collection.extend({
 });
 /* globals Backbone, app, _, $ */
 
-app.CountrySummaryView = Backbone.View.extend({
+// Country Information View
+app.CountryInformationView = Backbone.View.extend({
     // View template
     template: _.template($('#country-summary-template').html()),
 
@@ -294,6 +311,7 @@ app.CountrySummaryView = Backbone.View.extend({
 });
 /* globals Backbone, $, d3, _, app, hdi, Bloodhound */
 
+// Countries Trend View
 app.CountriesTrendView = Backbone.View.extend({
 
     // Initialize the trend chart
@@ -308,6 +326,7 @@ app.CountriesTrendView = Backbone.View.extend({
         this.listenTo(this.collection, 'change:selected', this.render);
     },
 
+    // Update the chart width and bind the updated data
     render: function() {
 
         // Update the width of the chart
@@ -319,11 +338,13 @@ app.CountriesTrendView = Backbone.View.extend({
             .call(this.chart);
     },
 
+    // Update the state of the application model
     setState: function(state) {
         this.collection.setSelected(state.get('code'));
     }
 });
 
+// Search Form View
 app.CountriesSearchView = Backbone.View.extend({
 
     // Initialize
@@ -338,7 +359,7 @@ app.CountriesSearchView = Backbone.View.extend({
     // Render the component
     render: function() {
 
-        // Initialize the engine
+        // Initialize the autocompletion engine
         this.engine = new Bloodhound({
             datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.name); },
             queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -348,20 +369,17 @@ app.CountriesSearchView = Backbone.View.extend({
         this.engine.initialize();
 
         // Render the element
-        this.$el.children('#search-country-input').typeahead(null, {
-            displayKey: 'name',
-            source: this.engine.ttAdapter()
-        });
+        this.$el.children('#search-country-input')
+            .typeahead(null, {
+                displayKey: 'name',
+                source: this.engine.ttAdapter()
+            });
     },
 
+    // Update the selected item in the collection
     setSelected: function(event, datum) {
-        this.setState(datum);
-    },
-
-    setState: function(state) {
-        this.collection.setSelected(state.code);
+        this.collection.setSelected(datum.code);
     }
-
 });
 /* globals app, $ */
 
@@ -398,7 +416,7 @@ app.countries.on({
 app.countries.fetch({reset: true});
 
 // HDI Summary
-app.country = new app.CountrySummary();
+app.country = new app.CountryInformation();
 app.country.listenTo(app.state, 'change:code', app.country.setState);
 
 
@@ -412,11 +430,10 @@ app.trendView = new app.CountriesTrendView({
 
 app.searchView = new app.CountriesSearchView({
     el: $('#search-country'),
-    collection: app.countries,
-    model: app.state
+    collection: app.countries
 });
 
-app.summaryView = new app.CountrySummaryView({
+app.infoView = new app.CountryInformationView({
     el: $('div#table'),
     model: app.country
 });

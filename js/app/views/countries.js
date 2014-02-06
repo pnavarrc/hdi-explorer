@@ -1,5 +1,6 @@
 /* globals Backbone, $, d3, _, app, hdi, Bloodhound */
 
+// Countries Trend View
 app.CountriesTrendView = Backbone.View.extend({
 
     // Initialize the trend chart
@@ -14,6 +15,7 @@ app.CountriesTrendView = Backbone.View.extend({
         this.listenTo(this.collection, 'change:selected', this.render);
     },
 
+    // Update the chart width and bind the updated data
     render: function() {
 
         // Update the width of the chart
@@ -25,11 +27,13 @@ app.CountriesTrendView = Backbone.View.extend({
             .call(this.chart);
     },
 
+    // Update the state of the application model
     setState: function(state) {
         this.collection.setSelected(state.get('code'));
     }
 });
 
+// Search Form View
 app.CountriesSearchView = Backbone.View.extend({
 
     // Initialize
@@ -44,7 +48,7 @@ app.CountriesSearchView = Backbone.View.extend({
     // Render the component
     render: function() {
 
-        // Initialize the engine
+        // Initialize the autocompletion engine
         this.engine = new Bloodhound({
             datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.name); },
             queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -54,18 +58,15 @@ app.CountriesSearchView = Backbone.View.extend({
         this.engine.initialize();
 
         // Render the element
-        this.$el.children('#search-country-input').typeahead(null, {
-            displayKey: 'name',
-            source: this.engine.ttAdapter()
-        });
+        this.$el.children('#search-country-input')
+            .typeahead(null, {
+                displayKey: 'name',
+                source: this.engine.ttAdapter()
+            });
     },
 
+    // Update the selected item in the collection
     setSelected: function(event, datum) {
-        this.setState(datum);
-    },
-
-    setState: function(state) {
-        this.collection.setSelected(state.code);
+        this.collection.setSelected(datum.code);
     }
-
 });

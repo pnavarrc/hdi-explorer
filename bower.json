@@ -1,6 +1,6 @@
 {
   "name": "hdi-explorer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "authors": [
     "Pablo Navarro Castillo <pnavarrc@gmail.com>"
   ],
@@ -20,7 +20,7 @@
     "test",
     "tests"
   ],
-  "dependencies": {
+  "devDependencies": {
     "d3": "~3.4.1",
     "bootstrap": "~3.1.0",
     "backbone": "~1.1.0",
