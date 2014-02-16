@@ -4,6 +4,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         // Import the package configuration
         pkg: grunt.file.readJSON('package.json'),
+        aws: grunt.file.readJSON('~/.aws.json'),
 
         jshint: {
             all: ['Gruntfile.js']
@@ -137,8 +138,7 @@ module.exports = function(grunt) {
             }
         },
 
-        clean: ['js/lib/*.js', 'js/application.js']
-
+        clean: ['js/lib/*.js']
     });
 
     // Enable the grunt plugins
