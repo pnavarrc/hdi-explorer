@@ -1,6 +1,6 @@
 {
   "name": "hdi-explorer",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Human Development Index Explorer",
   "main": "index.js",
   "scripts": {
@@ -25,5 +25,8 @@
     "grunt-contrib-jshint": "~0.8.0",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-uglify": "~0.3.2"
+  },
+  "dependencies": {
+    "grunt-s3": "~0.2.0-alpha.3"
   }
 }

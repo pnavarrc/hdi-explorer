@@ -137,8 +137,10 @@ module.exports = function(grunt) {
             }
         },
 
-        clean: ['js/lib/*.js', 'js/application.js']
-
+        clean: [
+            'js/lib/*.js',
+            'js/application.js'
+        ]
     });
 
     // Enable the grunt plugins
