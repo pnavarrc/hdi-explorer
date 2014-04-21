@@ -12,21 +12,24 @@ title: HDI Explorer
             <div class="country-summary container-fluid" id="table">
             </div>
 
-
             <!-- Sharing Buttons -->
             <div class="sharing">
 
               <span class="sharing-title">share</span>
 
-                <!-- Twitter 'share a link' -->
-                <a href="https://twitter.com/share" class="twitter-share-button"
-                    data-url="http://hdi-explorer.s3-website-us-east-1.amazonaws.com/"
-                    data-text="Human Development Index Explorer" data-via="pnavarrc"
-                    data-count="none"
-                    data-dnt="true">Tweet</a>
+                <!-- Twitter Share Button -->
+                <a href="https://twitter.com/share"
+                  class="twitter-share-button"
+                  data-url="http://pnavarrc.github.io/hdi-explorer/share"
+                  data-text="Explore Human Development Index trends by country."
+                  data-via="pnavarrc"
+                  data-related="pnavarrc"
+                  data-count="none"
+                  data-hashtags="masteringd3js">Tweet</a>
 
+                <!-- Facebook Share Button -->
                 <div class="fb-share-button"
-                  data-href="http://hdi-explorer.s3-website-us-east-1.amazonaws.com/"
+                  data-href="http://pnavarrc.github.io/hdi-explorer/share"
                   data-type="button"></div>
 
                 <div class="g-plusone"
@@ -44,8 +47,9 @@ title: HDI Explorer
 <script src="{{ site.baseurl }}/hdi.min.js"></script>
 
 
-<!-- Twitter Share a link -->
+
 <script>
+// Twitter Share Button
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 </script>
 
