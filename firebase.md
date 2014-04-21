@@ -67,3 +67,19 @@ title: HDI Explorer
   })();
 </script>
 
+<script>
+
+  var dataRef = new Firebase('https://hdi-explorer.firebaseio.com/');
+
+  dataRef.on('value', function(snapshot) {
+    app.state.set('code', snapshot.val().code);
+  });
+
+  var updateFirebase = {};
+  _.extend(updateFirebase, Backbone.Events);
+
+  updateFirebase.listenTo(app.state, 'change:code', function(model) {
+    dataRef.set({code: model.get('code')});
+  });
+</script>
+
