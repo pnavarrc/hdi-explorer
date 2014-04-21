@@ -11,7 +11,12 @@ title: HDI Explorer
         <div class="col-md-4">
             <div class="country-summary container-fluid" id="table">
             </div>
+
+
+            <!-- Sharing Buttons -->
             <div class="sharing">
+
+                <!-- Twitter 'share a link' -->
                 <a href="https://twitter.com/share" class="twitter-share-button"
                     data-url="http://hdi-explorer.s3-website-us-east-1.amazonaws.com/"
                     data-text="Human Development Index Explorer" data-via="pnavarrc"
@@ -36,9 +41,8 @@ title: HDI Explorer
 <script src="{{ site.baseurl }}/dependencies.min.js"></script>
 <script src="{{ site.baseurl }}/hdi.min.js"></script>
 
-<!-- Sharing -->
 
-<!-- Twitter -->
+<!-- Twitter Share a link -->
 <script>
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 </script>
@@ -61,5 +65,19 @@ title: HDI Explorer
   })();
 </script>
 
+<script>
 
+  var dataRef = new Firebase('https://hdi-explorer.firebaseio.com/');
+
+  dataRef.on('value', function(snapshot) {
+    app.state.set('code', snapshot.val().code);
+  });
+
+  var updateFirebase = {};
+  _.extend(updateFirebase, Backbone.Events);
+
+  updateFirebase.listenTo(app.state, 'change:code', function(model) {
+    dataRef.set({code: model.get('code')});
+  });
+</script>
 
