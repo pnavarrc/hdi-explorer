@@ -29,7 +29,7 @@ title: HDI Explorer
 
                 <!-- Facebook Share Button -->
                 <div class="fb-share-button"
-                  data-href="http://pnavarrc.github.io/hdi-explorer/share"
+                  data-href="http://pnavarrc.github.io/hdi-explorer/share/"
                   data-type="button"></div>
 
                 <div class="g-plusone"

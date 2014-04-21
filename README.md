@@ -9,4 +9,4 @@ Example of single page application for the upcoming book [Mastering D3.js](http:
 ![HDI Explorer Screenshot](img/screenshot.png)
 
 
-version 0.5.1
+version 0.5.2
