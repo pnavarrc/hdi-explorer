@@ -381,7 +381,7 @@ app.CountriesSearchView = Backbone.View.extend({
         this.collection.setSelected(datum.code);
     }
 });
-/* globals app, $ */
+/* globals app, $, Backbone */
 
 
 // Models & Collections
@@ -393,7 +393,6 @@ app.state = new app.ApplicationModel();
 // HDI Country Trends
 app.countries = new app.Countries();
 
-
 app.countries.listenTo(app.state, 'change:code', function(state) {
     this.setSelected(state.get('code'));
 });
@@ -401,7 +400,9 @@ app.countries.listenTo(app.state, 'change:code', function(state) {
 app.countries.on({
 
     'reset': function() {
-        app.state.set('code', this.first().get('code'));
+        if (!app.state.get('code')) {
+            app.state.set('code', this.first().get('code'));
+        }
     },
 
     'change:selected': function() {
@@ -419,6 +420,32 @@ app.countries.fetch({reset: true});
 app.country = new app.CountryInformation();
 app.country.listenTo(app.state, 'change:code', app.country.setState);
 
+
+// Router
+app.Router = Backbone.Router.extend({
+
+    initialize: function(attributes) {
+        this.model = attributes.model;
+        this.listenTo(this.model, 'change:code', this.setState);
+    },
+
+    routes: {
+        'country/:code': 'setCode'
+    },
+
+    setCode: function(code) {
+        this.model.set({code: code});
+        this.navigate('country/' + code, {trigger: true});
+    },
+
+    setState: function(model) {
+        this.setCode(model.get('code'));
+    }
+});
+
+
+app.router = new app.Router({model: app.state});
+Backbone.history.start();
 
 // Views
 // -----

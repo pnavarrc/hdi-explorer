@@ -54,15 +54,15 @@ module.exports = function(grunt) {
                 ]
             },
             jquery: {
-                src: 'bower_components/jquery/jquery.min.js',
+                src: 'bower_components/jquery/dist/jquery.js',
                 dest: 'js/lib/jquery.min.js'
             },
             backbone: {
-                src: 'bower_components/backbone/backbone-min.js',
+                src: 'bower_components/backbone/backbone.js',
                 dest: 'js/lib/backbone-min.js'
             },
             underscore: {
-                src: 'bower_components/underscore/underscore-min.js',
+                src: 'bower_components/underscore/underscore.js',
                 dest: 'js/lib/underscore-min.js'
             },
             d3: {
@@ -122,7 +122,8 @@ module.exports = function(grunt) {
                 src: [
                     'css/main.css',
                     'css/charts.css',
-                    'css/summary.css'
+                    'css/summary.css',
+                    'css/sharing.css'
                 ],
                 dest: 'hdi.css'
             }
@@ -140,7 +141,17 @@ module.exports = function(grunt) {
         clean: [
             'js/lib/*.js',
             'js/application.js'
-        ]
+        ],
+
+        watch: {
+            all: {
+                files: ['css/main.css', 'css/sharing.css', 'css/summary.css', 'css/charts.css'],
+                tasks: ['build'],
+                options: {
+                    spawn: false,
+                },
+            },
+        }
     });
 
     // Enable the grunt plugins
@@ -149,6 +160,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     // Register Tasks
 
