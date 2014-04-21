@@ -12,14 +12,12 @@ title: HDI Explorer
             <div class="country-summary container-fluid" id="table">
             </div>
 
-
             <!-- Sharing Buttons -->
             <div class="sharing">
 
               <span class="sharing-title">share</span>
 
-                <!-- Twitter 'share a link' -->
-
+                <!-- Twitter Share Button -->
                 <a href="https://twitter.com/share"
                   class="twitter-share-button"
                   data-url="http://pnavarrc.github.io/hdi-explorer/share"
@@ -29,6 +27,7 @@ title: HDI Explorer
                   data-count="none"
                   data-hashtags="masteringd3js">Tweet</a>
 
+                <!-- Facebook Share Button -->
                 <div class="fb-share-button"
                   data-href="http://pnavarrc.github.io/hdi-explorer/share"
                   data-type="button"></div>
