@@ -16,6 +16,8 @@ title: HDI Explorer
             <!-- Sharing Buttons -->
             <div class="sharing">
 
+              <span class="sharing-title">share</span>
+
                 <!-- Twitter 'share a link' -->
                 <a href="https://twitter.com/share" class="twitter-share-button"
                     data-url="http://hdi-explorer.s3-website-us-east-1.amazonaws.com/"
