@@ -7,44 +7,60 @@ title: HDI Explorer
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-8" id="chart"></div>
-        <div class="col-md-4">
-            <div class="country-summary container-fluid" id="table">
-            </div>
 
+        <!-- HDI Chart -->
+        <div class="col-md-8" id="chart"></div>
+
+        <div class="col-md-4">
+
+            <!-- Country Summary Table -->
+            <div class="country-summary container-fluid" id="table"></div>
 
             <!-- Sharing Buttons -->
             <div class="sharing">
+                <span class="sharing-title">share</span>
 
-              <span class="sharing-title">share</span>
-
-                <!-- Twitter 'share a link' -->
-                <a href="https://twitter.com/share" class="twitter-share-button"
-                    data-url="http://hdi-explorer.s3-website-us-east-1.amazonaws.com/"
-                    data-text="Human Development Index Explorer" data-via="pnavarrc"
+                <!-- Twitter Share Button -->
+                <a href="https://twitter.com/share"
+                    class="twitter-share-button"
+                    data-url="http://pnavarrc.github.io/hdi-explorer/share"
+                    data-text="Explore Human Development Index trends by country."
+                    data-via="pnavarrc"
+                    data-related="pnavarrc"
                     data-count="none"
-                    data-dnt="true">Tweet</a>
+                    data-hashtags="masteringd3js">Tweet</a>
 
+                <!-- Facebook Share Button -->
                 <div class="fb-share-button"
-                  data-href="http://hdi-explorer.s3-website-us-east-1.amazonaws.com/"
-                  data-type="button"></div>
+                    data-href="http://pnavarrc.github.io/hdi-explorer/share/"
+                    data-type="button"></div>
 
+                <!-- Google Plus Button -->
                 <div class="g-plusone"
-                  data-size="medium"
-                  data-annotation="none"
-                  data-href="http://hdi-explorer.s3-website-us-east-1.amazonaws.com/">
-                </div>
+                    data-size="medium"
+                    data-annotation="none"
+                    data-href="http://pnavarrc.github.io/hdi-explorer/share/"></div>
+            </div>
 
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div id="comments-section">
+                <div id="disqus_thread"></div>
             </div>
         </div>
+        <div class="col-md-4"></div>
     </div>
+
 </div>
 
 <script src="{{ site.baseurl }}/dependencies.min.js"></script>
 <script src="{{ site.baseurl }}/hdi.min.js"></script>
 
-
-<!-- Twitter Share a link -->
+<!-- Twitter -->
 <script>
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 </script>
@@ -67,19 +83,31 @@ title: HDI Explorer
   })();
 </script>
 
+<script type="text/javascript">
+    // Disqus Configuration Variables
+    var disqus_shortname = 'hdi-explorer';
+
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 <script>
+  // Connect to the Firebase application and retrieve the data reference
+  var dataref = new Firebase('https://hdi-explorer.firebaseio.com/');
 
-  var dataRef = new Firebase('https://hdi-explorer.firebaseio.com/');
-
-  dataRef.on('value', function(snapshot) {
+  // Update the application state when the value of the data changes in Firebase
+  dataref.on('value', function(snapshot) {
     app.state.set('code', snapshot.val().code);
   });
 
-  var updateFirebase = {};
-  _.extend(updateFirebase, Backbone.Events);
-
-  updateFirebase.listenTo(app.state, 'change:code', function(model) {
-    dataRef.set({code: model.get('code')});
+  // The model will update the object with the selected country code.
+  app.state.on('change:code', function(model) {
+    dataref.set({code: model.get('code')});
   });
-</script>
 
+</script>
