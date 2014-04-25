@@ -80,6 +80,10 @@ module.exports = function(grunt) {
                         dest: 'js/lib/typeahead.jquery.js'
                     }
                 ]
+            },
+            firebase: {
+                src: 'bower_components/firebase/firebase.js',
+                dest: 'js/lib/firebase.js'
             }
         },
 
@@ -92,6 +96,7 @@ module.exports = function(grunt) {
                     'js/lib/bootstrap.min.js',
                     'js/lib/bloodhound.js',
                     'js/lib/typeahead.jquery.js',
+                    'js/lib/firebase.js',
                     'js/lib/d3.min.js'
                 ],
                 dest: 'dependencies.min.js'

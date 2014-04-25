@@ -18,3 +18,8 @@
 .fb-share-button {
     vertical-align: top;
 }
+
+#comments-section {
+    padding-left: 40px;
+    padding-right: 20px;
+}

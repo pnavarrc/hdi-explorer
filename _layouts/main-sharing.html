@@ -15,19 +15,17 @@
     <link href="{{ site.baseurl }}/css/font-awesome.min.css" rel="stylesheet">
     <link href="{{ site.baseurl }}/hdi.css" rel="stylesheet">
 
-
     <!-- Facebook Meta Tags -->
     <meta property="og:title" content="HDI Explorer" />
     <meta property="og:site_name" content="HDI Explorer"/>
     <meta property="og:url" content="http://pnavarrc.github.io/hdi-explorer/share/"/>
     <meta property="og:description" content="Explore Human Development Index Trends by Country."/>
     <meta property="og:image" content="http://pnavarrc.github.io/hdi-explorer/img/screenshot.png"/>
-
-    <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.11/firebase.js'></script>
   </head>
 
   <body>
-    {% include fb-sharing.html %}
+    <div id="fb-root"></div>
+
     <!-- Navigation Bar -->
     {% include navbar.html %}
 
