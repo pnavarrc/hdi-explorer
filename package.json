@@ -1,6 +1,6 @@
 {
   "name": "hdi-explorer",
-  "version": "0.5.4",
+  "version": "0.5.6",
   "description": "Human Development Index Explorer",
   "main": "index.js",
   "scripts": {
