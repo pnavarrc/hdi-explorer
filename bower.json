@@ -1,6 +1,6 @@
 {
   "name": "hdi-explorer",
-  "version": "0.4.0",
+  "version": "0.5.4",
   "authors": [
     "Pablo Navarro Castillo <pnavarrc@gmail.com>"
   ],
@@ -26,6 +26,7 @@
     "backbone": "~1.1.0",
     "underscore": "~1.5.2",
     "font-awesome": "~4.0.3",
-    "typeahead.js": "~0.10.0"
+    "typeahead.js": "~0.10.0",
+    "firebase": "~1.0.11"
   }
 }

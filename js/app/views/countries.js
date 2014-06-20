@@ -59,7 +59,7 @@ app.CountriesSearchView = Backbone.View.extend({
 
         // Render the element
         this.$el.children('#search-country-input')
-            .typeahead(null, {
+            .typeahead({
                 displayKey: 'name',
                 source: this.engine.ttAdapter()
             });
